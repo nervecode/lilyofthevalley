@@ -1,0 +1,148 @@
+:root {
+    --bg-green: #0a1f0a;
+    --stem-green: #4caf50;
+    --flower-white: #ffffff;
+    --glow: rgba(200, 255, 200, 0.9);
+}
+
+body {
+    margin: 0;
+    height: 100vh;
+    background: radial-gradient(circle at center, #1a3a1a 0%, var(--bg-green) 100%);
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    overflow: hidden;
+}
+
+.flower-container {
+    position: relative;
+    width: 350px;
+    height: 650px;
+    margin-bottom: 40px;
+    animation: gentleSway 5s ease-in-out infinite;
+    transform-origin: bottom center;
+}
+
+/* Perfectly Straight Vertical Stem */
+.stem-straight {
+    position: absolute;
+    bottom: 50px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 7px;
+    height: 520px;
+    background: linear-gradient(to top, #1b5e20, var(--stem-green));
+    border-radius: 4px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.2);
+    z-index: 1;
+}
+
+.bell {
+    position: absolute;
+    width: 44px;
+    height: 38px;
+    background: var(--flower-white);
+    border-radius: 50% 50% 35% 35%;
+    top: var(--top);
+    left: var(--left);
+    box-shadow: 0 0 30px var(--glow), inset 0 -6px 8px rgba(0,0,0,0.1);
+    z-index: 5;
+    transform-origin: top center;
+    /* Flowers hang straight down */
+    animation: bellDangle 4s ease-in-out infinite;
+}
+
+/* Vertical Pedicel */
+.bell::before {
+    content: '';
+    position: absolute;
+    top: -12px;
+    left: 50%;
+    width: 3px;
+    height: 14px;
+    background: var(--stem-green);
+    transform: translateX(-50%);
+}
+
+.bell::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 10%;
+    width: 80%;
+    height: 10px;
+    background: radial-gradient(circle, #fff 40%, transparent 55%);
+    background-size: 10px 10px;
+}
+
+.leaf {
+    position: absolute;
+    bottom: 50px;
+    background: linear-gradient(to top, #051405, #1b5e20);
+    border-radius: 0 100% 0 100%;
+}
+
+/* Centered leaves around the straight stem */
+.leaf-left { width: 60px; height: 180px; left: 100px; transform: rotate(-12deg); }
+.leaf-right { width: 65px; height: 210px; left: 185px; transform: rotate(12deg) scaleX(-1); }
+
+@keyframes gentleSway {
+    0%, 100% { transform: rotate(-0.5deg); }
+    50% { transform: rotate(0.5deg); }
+}
+
+@keyframes bellDangle {
+    0%, 100% { transform: rotate(-2deg); }
+    50% { transform: rotate(2deg); }
+}
+
+.message {
+    position: absolute;
+    top: 8%;
+    color: #a5d6a7;
+    font-family: 'Georgia', serif;
+    font-size: 2.2rem;
+    text-shadow: 0 0 20px rgba(165, 214, 167, 0.5);
+}
+
+/* ... Heart CSS remains the same ... */
+
+
+/* ... keep your previous CSS for stem, bells, and leaves ... */
+
+/* Heart Animation (Falling Down) */
+.heart {
+    position: absolute;
+    color: #ff4081;
+    filter: drop-shadow(0 0 5px #ff4081);
+    z-index: 0;
+    pointer-events: none;
+    animation: fall linear forwards;
+}
+
+@keyframes fall {
+    to { transform: translateY(110vh) rotate(360deg); opacity: 0; }
+}
+
+/* Bubble Animation (Floating Up) */
+.bubble {
+    position: absolute;
+    bottom: -20px;
+    background: rgba(255, 255, 255, 0.3);
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    border-radius: 50%;
+    box-shadow: inset -5px -5px 10px rgba(255, 255, 255, 0.2), 
+                0 0 10px rgba(200, 255, 200, 0.3);
+    z-index: 0;
+    pointer-events: none;
+    animation: floatUp linear forwards;
+}
+
+@keyframes floatUp {
+    0% { transform: translateY(0) translateX(0); opacity: 0; }
+    10% { opacity: 0.6; }
+    50% { transform: translateY(-50vh) translateX(20px); }
+    100% { transform: translateY(-110vh) translateX(-20px); opacity: 0; }
+}
+
